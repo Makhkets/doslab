@@ -4,19 +4,19 @@ import (
 	"database/sql"
 	"doslab/internal/config"
 	"fmt"
+
 	_ "github.com/lib/pq"
 )
 
 var DB *sql.DB
 
-func InitializeDb() {
+func MustInitializeDb() {
 	var err error
 
 	connStr := fmt.Sprintf("postgres://%s:%s@localhost/%s?sslmode=disable", config.Cfg.DataBaseUser, config.Cfg.DataBasePassword, config.Cfg.DataBaseName)
 	DB, err = sql.Open("postgres", connStr)
 	if err != nil {
-		fmt.Println(err.Error())
-		return
+		panic(err)
 	}
 }
 
