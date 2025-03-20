@@ -36,7 +36,7 @@ func Server() {
 
 	// Initialize dbs
 	config.InitializeConfig()
-	postgresql.InitializeDb()
+	postgresql.MustInitializeDb()
 
 	// DataBase migrations
 	err := postgresql.Migrations()
